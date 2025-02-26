@@ -78,9 +78,7 @@ function startUpMenu()
         ¿Qué opción desea elegir?
           1- Crear un nuevo empleado
           2- Revisar los datos de algún empleado
-          ${/*3- Cambiar los ajustes de algún empleado
-          4- Chequear el horario
-          5- Eliminar a un empleado*/}`);
+          `);
     
 
     switch (firstOption)
