@@ -67,52 +67,43 @@ class Employee{
         return this.#hoursWeekly;    
     }
 }
-
 //Array de empleados
 let employeesList = [];
 
-//El menú de inicio
-function startUpMenu()
-{
-    let firstOption = prompt(`Bienvenido al asistente de horarios
-        ¿Qué opción desea elegir?
-          1- Crear un nuevo empleado
-          2- Revisar los datos de algún empleado
-          `);
-    
+document.getElementById("eplyCreatorButton").addEventListener("click", () => window.location.href = "/eplyCreator.html");
+document.getElementById("eplyDataButton").addEventListener("click", () => window.location.href = "/eplyDataShow.html");
+document.getElementById("eplyEditorButton").addEventListener("click", () => window.location.href = "/eplyEditor.html");
+document.getElementById("eplyDeleteButton").addEventListener("click", () => window.location.href = "/eplyDelete.html");
 
-    switch (firstOption)
-    {
-        case `1`:
-            employeeCreator();
-        break;
-        case `2`:
-            showEmployeesData();
-        break;
-        case `3`:
-            alert()
-        default:
-            alert(`No ha ingresado un valor válido, porfavor ingrese un número del 1 al 5`);
-    }
-}
-   
+const nameEmply_INP = document.getElementById("nameEmply");
+const hoursWkly_INP = document.getElementById("hrsWeekly");
+const hrsDbt_INP = document.getElementById("hrsDebt");
+const hrsUnvlb_DIV = document.getElementById("unavailableHrsDiv");
+
 //Revisa si 'day' es un string con un dia de la semana, independientemente si tiene tildes o mayusculas
-function isTheDayAllowed(day)
+export function isTheDayAllowed(day)
 {
-    if(day.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase() === 'lunes'||'martes'||'miercoles'||'jueves'||'viernes'||'sabado'||'domingo')
+    let weekdays = ['lunes', 'martes','miercoles','jueves','viernes','sabado','domingo'];
+    /* if(day.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase() === 'lunes'||'martes'||'miercoles'||'jueves'||'viernes'||'sabado'||'domingo')
+    Este anterior código fue reemplazado porque por alguna razón que no entiendo, dejó de funcionar.
+    */
+        if(weekdays.includes(day.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase()))
             return true;
         else
             return false;
 } 
 
 //Revisa si el array 'hoursRange' se encuentra en formato HH:MM
-function isTheHoursAllowed(hoursRange)
+export function isTheHoursAllowed(hoursRange)
 { 
     if(hoursRange.length == 2 && (/^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/).test(hoursRange[0]) && (/^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/).test(hoursRange[1]))
             return true;
         else
             return false;
 }
+
+
+const emplyData = document.getElementById('emplyData');
 
 
 //Creador de empleados
@@ -125,7 +116,7 @@ function employeeCreator()
     let hoursOwed = 0;
     let name = "";
 
-    name = prompt(`¿Cómo desea que se llame su trabajador?`);
+    nameEmply_INP
 
     //Revisa que el nombre no sea un número o un valor vacío
     if(isNaN(name) && name != null && name != ``)

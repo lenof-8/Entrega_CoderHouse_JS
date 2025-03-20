@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Creator</title>
+    <script defer type="module" src="./eplyCreator.js"></script>
+    <link href="eplyCreator.css" rel="stylesheet">
+</head>
+<body>
+    <h1>Schedule Assistant</h1>
+    <h3>Crear un nuevo empleado</h3>
+
+    <form id="emplyData">
+        <label>Nombre del empleado</label>
+        <input id="nameEmply" type="text" placeholder="Nombre">
+        <div>
+            <label>Horas de trabajo semanal</label>
+            <input id="hrsWeekly" type="number" placeholder="48">
+        </div>
+        <div>
+            <label>Horas en deuda*</label>
+            <input id="hrsDebt" type="number" placeholder="8">
+        </div>
+        <div id="unavailableHrs_Div">
+            <label>¿El empleado tiene disponible todos los horarios?</label> 
+            <button id="yesUH_Btn">Si</button>
+            <button id="noUH_Btn">No</button>
+        </div>
+        <input type="submit" value="Guardar Empleado" id="saveEmply">
+        <!-- El usuario va a ir poniento horarios e irán apereciendo en pantalla a forma de lista -->
+        <h6>*Si su empleado le debe horas, introdúzcalas. En caso de que usted le deba horas, ponga un número negativo</h6>
+        <p id="formErrorMessage"></p>
+        <ul id="unavailableSch_Ul"></ul>
+    </form>
+</body>
+</html>
