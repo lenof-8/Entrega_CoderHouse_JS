@@ -32,7 +32,7 @@ console.log(unavailableSchList);
 
 document.getElementById("noUH_Btn").addEventListener("click", ()=>
 {
-    const  unavailableHrs_Div = document.getElementById("unavailableHrs_Div");
+    const unavailableHrs_Div = document.getElementById("unavailableHrs_Div");
     const unavailableForumInfo = document.createElement("h6");
     unavailableHrs_Div.innerHTML = "";  
     unavailableForumInfo.innerText = '*Coloque un horario a la vez en el formato indicado. El rango de horas en formato 24hrs';

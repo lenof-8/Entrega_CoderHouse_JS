@@ -1,4 +1,4 @@
-class Employee{
+export default class Employee{
     #hoursUnavailable = [];
     #hoursWeekly = 48;
     #hoursOwed = 0;
@@ -70,10 +70,18 @@ class Employee{
 //Array de empleados
 let employeesList = [];
 
-document.getElementById("eplyCreatorButton").addEventListener("click", () => window.location.href = "/eplyCreator.html");
-document.getElementById("eplyDataButton").addEventListener("click", () => window.location.href = "/eplyDataShow.html");
-document.getElementById("eplyEditorButton").addEventListener("click", () => window.location.href = "/eplyEditor.html");
-document.getElementById("eplyDeleteButton").addEventListener("click", () => window.location.href = "/eplyDelete.html");
+try
+{
+    document.getElementById("eplyCreatorButton").addEventListener("click", () => window.location.href = "/eplyCreator.html");
+    document.getElementById("eplyDataButton").addEventListener("click", () => window.location.href = "/eplyDataShow.html");
+    document.getElementById("eplyEditorButton").addEventListener("click", () => window.location.href = "/eplyEditor.html");
+    document.getElementById("eplyDeleteButton").addEventListener("click", () => window.location.href = "/eplyDelete.html");
+}
+catch(error)
+{
+    console.error("Está pasando esto:", error.message + " pero ojo que no me importa" )
+}
+
 
 const nameEmply_INP = document.getElementById("nameEmply");
 const hoursWkly_INP = document.getElementById("hrsWeekly");
@@ -102,56 +110,6 @@ export function isTheHoursAllowed(hoursRange)
             return false;
 }
 
-
-const emplyData = document.getElementById('emplyData');
-
-
-//Creador de empleados
-function employeeCreator()
-{
-    let hoursRangeUnavailable;
-    let dayUnavailable;
-
-    let hoursWeekly = 48;
-    let hoursOwed = 0;
-    let name = "";
-
-    nameEmply_INP
-
-    //Revisa que el nombre no sea un número o un valor vacío
-    if(isNaN(name) && name != null && name != ``)
-    {
-        
-        do
-        {   //Revisa que el valor ingresado sea un número que no sea 0 y lo guarda como las horas semanales que trabaja el empleado
-            hoursWeekly = prompt(`¿Cuántas horas semanales trabaja ${name}?`);
-            if(isNaN(hoursWeekly) || Boolean(hoursWeekly) === false || hoursWeekly === `0`)
-                alert(`Ingrese un número válido`);
-        } while(isNaN(hoursWeekly) || Boolean(hoursWeekly) === false || hoursWeekly === `0`);
-          
-        do
-        {   //Revisa que el valor ingresado sea un número y lo guarda como las horas que debe o se le deben al empleado
-            hoursOwed = prompt(`Si ${name} le debe horas, introdúzcalas. En caso de que usted le deba horas, ponga un número negativo`);
-            if(isNaN(hoursOwed) || Boolean(hoursOwed) === false)
-                alert(`Ingrese un número válido`);
-        } while(isNaN(hoursOwed) || Boolean(hoursOwed) === false);
-
-        //Crea al empleado y lo guarda en un Array    
-        employeesList.push(new Employee(name, hoursWeekly, hoursOwed));    
-
-        //Si el empleado tiene horarios en los que no está disponible, activa el menú para recopilar esa info
-        if(confirm(`¿${name} se encuentra no disponible a ciertas horas?
-            Si es así, seleccione "Aceptar"...`))
-            addUnavailableHours(name);                
-        else
-            startUpMenu();
-    }
-    else
-    {   //Si no se ha puesto un nombre valido al inicio, no permite avanzar hasta que haya un nombre valido
-        alert(`Introduzca un nombre válido`);
-        employeeCreator();
-    }
-}
 
 //Menu para agregar los datos del empleado en los que no está disponible
 function addUnavailableHours(name)
